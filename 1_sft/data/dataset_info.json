@@ -1,0 +1,10 @@
+{
+  "sft_data": {
+    "file_name": "sft_data.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

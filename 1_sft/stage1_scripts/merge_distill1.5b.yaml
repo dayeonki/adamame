@@ -1,0 +1,17 @@
+### Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+### Run command
+# llamafactory-cli export scripts_sft/merge/merge_distill.yaml
+
+### model
+model_name_or_path: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+adapter_name_or_path: saves/distill_1.5b/adapter
+template: deepseekr1
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: model/distill_1.5b/sft
+export_size: 5
+export_device: cpu
+export_legacy_format: false

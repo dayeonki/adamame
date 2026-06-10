@@ -1,0 +1,47 @@
+### model
+model_name_or_path: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+resume_from_checkpoint: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+# deepspeed: examples/deepspeed/ds_z2_config.json
+
+### dataset
+dataset: sft_data
+template: deepseekr1
+cutoff_len: 8192
+think_in_prompt: true
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/distill_1.5b/adapter
+logging_steps: 10
+save_steps: 100
+plot_loss: true
+overwrite_output_dir: false
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 2.0e-4
+num_train_epochs: 4.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+gradient_checkpointing: true
+ddp_timeout: 180000000
+
+### eval
+val_size: 0.1
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 100
+compute_accuracy: true
+
+### visualize
+report_to: wandb
+run_name: distill_1.5b_sft
